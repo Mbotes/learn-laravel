@@ -21,3 +21,7 @@ Route::get('/', function () {
 Route::get('test', 'TestController@index');
 Route::post('test', 'TestController@store');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
