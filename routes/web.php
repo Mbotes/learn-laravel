@@ -11,15 +11,18 @@
 |
 */
 
+Auth::routes();
 
 //homepage route
  Route::get('/', 'PagesController@index');
 
 //test route
 Route::get('test', 'TestController@index');
-Route::post('test', 'TestController@store');
+
+//Widget route
+Route::resource('widget', 'WidgetController');
 
 
-Auth::routes();
+
 
 
