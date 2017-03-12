@@ -8,6 +8,11 @@
 
     <h1>This is My Test Page</h1>
 
+    {{-- Example of sending a flash message through from test controller  --}}
+    {{-- @if(session()->has('status')) 
+        <div class="alert">{{ session('status') }}</div>
+    @endif --}}
+
 @if(count($beatles) > 0)
 
     @foreach($beatles as $beatle)
