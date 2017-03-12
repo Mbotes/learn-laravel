@@ -4,7 +4,7 @@
     <style>
         body{
             padding-top: 65px;
-
+            background-color: white;
         } 
 
         .circ {
