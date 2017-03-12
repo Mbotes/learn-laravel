@@ -4,16 +4,16 @@
 
    <p>&copy;
 
-       @if (date('Y') > 2015)
+       @if (date('Y') > 2017)
 
-           2015 - {{ date('Y') }}
+            2017 -{{ date('Y') }}
 
        @else
 
-           2015
+           2017
 
        @endif
 
-       Sample Project All rights Reserved.</p>
+       Learn Laravel All rights Reserved.</p>
 
 </div>

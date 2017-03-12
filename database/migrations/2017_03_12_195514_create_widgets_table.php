@@ -11,8 +11,6 @@ class CreateWidgetsTable extends Migration
      *
      * @return void
      */
-
-    protected $fillable = ['name'];
     public function up()
     {
         Schema::create('widgets', function (Blueprint $table) {

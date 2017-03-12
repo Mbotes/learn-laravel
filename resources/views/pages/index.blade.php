@@ -14,7 +14,7 @@
 
     <div class="jumbotron">
 
-        <h1>Sample Project</h1>
+        <h1>Learn Laravel</h1>
 
         <p>Use it as a starting point to create something more unique by
             building on or modifying it.
