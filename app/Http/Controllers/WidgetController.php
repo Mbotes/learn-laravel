@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Widget;
 use Redirect;
 
@@ -46,7 +47,9 @@ class WidgetController extends Controller
 
         ]);
 
-        $widget = Widget::create(['name' => $request->name]);
+        $slug = str_slug($request->name,"-");
+
+        $widget = Widget::create(['name' => $request->name, 'slug'=> $slug, 'user_id' => Auth::id()]);
 
         $widget->save();
 
@@ -99,5 +102,9 @@ class WidgetController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function __construct() {
+        $this->middleware('auth', ['except' => ['index', 'show']] );
     }
 }

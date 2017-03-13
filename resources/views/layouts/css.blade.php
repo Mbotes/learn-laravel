@@ -13,7 +13,7 @@
 
         .circ {
             width: 40px;
-            vertical-align: middle,
+            vertical-align: middle;
             border-radius: 50%;
             box-shadow: 0 0 0 2px #fff;
             margin-top: 5px;

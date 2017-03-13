@@ -20,7 +20,11 @@ Auth::routes();
 Route::get('test', 'TestController@index');
 
 //Widget route
-Route::resource('widget', 'WidgetController');
+Route::get('widget/create', 'WidgetController@create')->name('widget.create');
+
+Route::get('widget/{id}-{slug?}', 'WidgetController@show')->name('widget.show');
+
+Route::resource('widget', 'WidgetController', ['except' => ['show', 'create']] );
 
 
 
