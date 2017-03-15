@@ -65,9 +65,20 @@ class WidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $slug = '')
     {
-        //
+        $widget = Widget::findOrFail($id);
+
+        if ($widget->slug !== $slug) {
+
+            return Redirect::route('widget.show', 
+            [
+                'id' => $widget->id, 
+                'slug' => $widget->slug
+            ], 301);
+        }
+
+        return view('widget.show', compact('widget'));
     }
 
     /**
