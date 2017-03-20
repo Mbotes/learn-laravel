@@ -44,7 +44,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        switch($exception){
+            case $exception instanceof EmailNotProvidedException :
+                if ($request->ajax()) {
+                    return response()->json(['error' => 'Email Not Found'], 500);
+                }
+                return response()->view('errors.email-not-provided-exception', compact('exception'), 500);
+                break;
+                
+            default: 
+                return parent::render($request, $exception);   
+        }
     }
 
     /**

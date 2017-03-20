@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Widget;
 
 class TestController extends Controller
 {
@@ -13,13 +14,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $beatles = ['John', 'Paul', 'George', 'Ringo'];
-            alert()->overlay('Woah!', 'Welcome Back!!', 'success');
-
-            // Example of sending a default laravel flash message through
-            // session()->flash('status', 'Task was successful!');
-
-        return view('test.index', compact('beatles'));
+        $result = Widget::findOrFail(200);
     }
 
     /**
