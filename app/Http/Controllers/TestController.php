@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Widget;
+use App\Exceptions\EmailNotProvidedException;
 
 class TestController extends Controller
 {
@@ -14,7 +15,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $result = Widget::findOrFail(200);
+       throw new EmailNotProvidedException('facebook');
     }
 
     /**
