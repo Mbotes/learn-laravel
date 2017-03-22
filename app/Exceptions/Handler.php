@@ -5,6 +5,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Exceptions\EmailNotProvidedException;
+use App\Exceptions\UnauthorizedException;
 class Handler extends ExceptionHandler
 {
     /**
@@ -47,6 +48,13 @@ class Handler extends ExceptionHandler
                     return response()->json(['error' => 'Email Not Found'], 500);
                 }
                 return response()->view('errors.email-not-provided-exception', compact('exception'), 500);
+                break;
+
+            case $exception instanceof UnauthorizedException:
+                if($request->ajax()) {
+                    return response()->json(['error' => 'Unauthorized'], 500);
+                }
+                return response()->view('errors.unauthorized-exception', compact('exception'), 500);
                 break;
             default:
                 return parent::render($request, $exception);

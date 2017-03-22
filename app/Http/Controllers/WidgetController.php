@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Widget;
 use Redirect;
+use App\Http\AuthTraits\OwnsRecord;
+
+use App\Exceptions\UnauthorizedException;
 
 class WidgetController extends Controller
 {
+
+    use OwnsRecord;
     /**
      * Display a listing of the resource.
      *
@@ -108,6 +113,10 @@ class WidgetController extends Controller
         ]);
 
         $widget = Widget::findOrFail($id);
+
+        if ($this->userNotOwnerOf($widget)){
+            throw new UnauthorizedException('You do not own this widget, ');
+        }
 
         $slug = str_slug($request->name, "-");
 
