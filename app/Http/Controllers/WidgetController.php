@@ -21,7 +21,7 @@ class WidgetController extends Controller
      */
     public function index()
     {
-        $widgets = Widget::paginate(10);
+        $widgets = Widget::paginate(15);
         return view('widget.index', compact('widgets'));
     }
 
@@ -110,25 +110,25 @@ class WidgetController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|max:30|unique:widgets,name,' .$id
+
         ]);
 
         $widget = Widget::findOrFail($id);
 
-        if ($this->userNotOwnerOf($widget)){
-            throw new UnauthorizedException('You do not own this widget, ');
+        if ( ! $this->adminOrCurrentUserOwns($widget))
+        { 
+            throw new UnauthorizedException;
         }
 
         $slug = str_slug($request->name, "-");
 
-        $widget->update([
-                'name' => $request->name,
-                'slug' => $slug,
-                'user_id' => Auth::id()
-            ]);
-        alert()->success('Done!', 'You updated a widget');
-        return Redirect::route('widget.show', [
-            'widget' => $widget, 'slug' => $slug
-        ]);
+        $widget->update(['name' => $request->name,
+                         'slug' => $slug,
+                         'user_id' => Auth::id()]);
+
+        alert()->success('Congrats!', 'You updated a widget');
+
+        return Redirect::route('widget.show', ['widget' => $widget, 'slug' =>$slug]);
     }
 
     /**
