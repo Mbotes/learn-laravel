@@ -19,6 +19,9 @@ Auth::routes();
 //test route
 Route::get('test', 'TestController@index');
 
+//admin route
+Route::get('/admin', 'AdminController@index')->name('admin');
+
 //Widget route
 Route::get('widget/create', 'WidgetController@create')->name('widget.create');
 
