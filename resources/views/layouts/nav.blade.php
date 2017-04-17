@@ -35,6 +35,9 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
+                              <a href="#">
+                                    {{ Auth::user()->email }}
+                                </a>
                                 <a href="/logout"
                                    onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">
